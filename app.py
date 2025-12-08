@@ -1,7 +1,7 @@
 """
 EduScan Bootstrapper & Full App Generator
 
-This is a safe Python bootstrapper that generates a runnable EduScan MVP project on disk.
+This script generates a runnable EduScan MVP project on disk.
 
 How to use:
 1. Save and run this script in an empty directory: `python create_eduscan.py`.
@@ -12,11 +12,11 @@ Why this exists:
 Previously the canvas contained large markdown inside a `code/python` block which caused SyntaxError when executed.
 This script writes proper files to disk so Python never tries to execute markdown text.
 
-This generator also creates two useful helper scripts:
+This generator also creates two helpful scripts:
 - `start_app.bat` (Windows) to start backend + Streamlit UI together
 - `build_exe.bat` (Windows) to create a single-file .exe using PyInstaller
 
-It includes a minimal, working Streamlit UI and a small FastAPI backend stub so the whole system can be tested end-to-end.
+It includes a minimal Streamlit UI and a FastAPI backend stub so the whole system can be tested end-to-end.
 """
 
 from pathlib import Path
@@ -46,7 +46,7 @@ Quick start (local):
 1. Create a virtual environment (recommended):
 
    python -m venv venv
-   # Windows: venv\Scripts\activate
+   # Windows: venv\\Scripts\\activate
    # macOS/Linux: source venv/bin/activate
 
 2. Install dependencies:
@@ -423,15 +423,18 @@ write_file('Dockerfile', DOCKERFILE)
 TESTS = r'''import re
 from pathlib import Path
 
+
 def test_readme_exists():
     p = Path('eduscan-mvp/README.md')
     assert p.exists()
+
 
 def test_readme_no_box_chars():
     p = Path('eduscan-mvp/README.md')
     text = p.read_text(encoding='utf-8')
     box_chars = re.compile(r'[─-╿]')
     assert not box_chars.search(text)
+
 
 def test_requirements():
     p = Path('eduscan-mvp/requirements.txt')
@@ -440,8 +443,7 @@ def test_requirements():
 '''
 write_file('tests/test_basic.py', TESTS)
 
-print('
-Project generation complete: eduscan-mvp/'))
+print('Project generation complete: eduscan-mvp/')
 print('To run:')
 print('  cd eduscan-mvp')
 print('  python -m venv venv')
@@ -449,8 +451,7 @@ print('  # activate venv then: pip install -r requirements.txt')
 print('  uvicorn app.backend:app --reload --port 8000')
 print('  streamlit run ui/streamlit_app.py')
 
-print('
-You can also run start_app.bat (Windows) to start backend + UI.'))
+print('You can also run start_app.bat (Windows) to start backend + UI.')
 
 if __name__ == '__main__':
     print('Generator finished.')

@@ -11,7 +11,7 @@ def write_file(rel_path: str, content: str) -> None:
     p = ROOT / rel_path
     p.parent.mkdir(parents=True, exist_ok=True)
     p.write_text(content, encoding='utf-8')
-    print(f'Wrote: {p}')
+    print("\nProject generation complete: eduscan-mvp/")
 
 # README
 README = """# EduScan - MVP (Streamlit-ready)
